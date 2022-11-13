@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1280</width>
+    <height>760</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QWidget" name="book_widget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>50</y>
+     <width>590</width>
+     <height>220</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QWidget" name="annotation_widget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>650</x>
+     <y>50</y>
+     <width>590</width>
+     <height>220</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QWidget" name="reviews_widget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>290</y>
+     <width>1200</width>
+     <height>440</height>
+    </rect>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
