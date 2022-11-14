@@ -18,7 +18,7 @@ class Ui_Form(object):
         self.frame = QtWidgets.QFrame(Form)
         self.frame.setGeometry(QtCore.QRect(0, 0, 290, 660))
         self.frame.setStyleSheet("border-radius: 8px;\n"
-"background: #ffffff")
+                                 "background: #ffffff")
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")
@@ -30,7 +30,6 @@ class Ui_Form(object):
         self.order_font.setPointSize(12)
         self.order_font.setBold(True)
         self.order_font.setWeight(40)
-
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)

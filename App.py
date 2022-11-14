@@ -1,6 +1,7 @@
 from PyQt5.QtWidgets import QMainWindow, QWidget
 
 from src.pages.BookPage.BookPage import BookPage
+from src.pages.CartPage.CartPage import CartPage
 from src.pages.MarketPage.MarketPage import MarketPage
 from style import Ui_MainWindow
 
@@ -11,7 +12,7 @@ class App(QMainWindow, Ui_MainWindow):
         self.setupUi(self)
         self.market_page = MarketPage(self.book_click)
         self.book_page = BookPage()
-        self.cart_page = QWidget()
+        self.cart_page = CartPage()
         self.init_page("market")
         self.header_widget.shopBtn.clicked.connect(self.shop_click)
         self.header_widget.cartBtn.clicked.connect(self.cart_click)
@@ -42,10 +43,12 @@ class App(QMainWindow, Ui_MainWindow):
         self.book_page.setParent(None)
         if page == "market":
             self.market_page.setParent(self.centralwidget)
+            self.market_page.scrollArea.rerender_books()
             self.market_page.show()
         elif page == "cart":
             self.cart_page.setParent(self.centralwidget)
-            # self.cart_page.show()
+            self.cart_page.books_widget.rerender()
+            self.cart_page.show()
         elif page == "book":
             self.book_page.setParent(self.centralwidget)
             self.book_page.setId(book_id)

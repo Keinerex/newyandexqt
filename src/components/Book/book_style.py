@@ -17,6 +17,7 @@ class Ui_Form(object):
     def setupUi(self, Form, title, authors, genre, price, rate, number):
         Form.setGeometry(QtCore.QRect(0, 0, 870, 220))
         Form.setMinimumSize(870, 200)
+        Form.setMaximumSize(870, 200)
         font = QtGui.QFont()
         font.setBold(True)
         font.setWeight(75)
