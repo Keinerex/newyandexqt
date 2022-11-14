@@ -5,7 +5,6 @@ from src.pages.MarketPage.MarketPage import MarketPage
 from style import Ui_MainWindow
 
 
-
 class App(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
@@ -34,7 +33,6 @@ class App(QMainWindow, Ui_MainWindow):
     def shop_click(self):
         self.init_page("market")
 
-
     def cart_click(self):
         self.init_page("cart")
 
@@ -42,14 +40,13 @@ class App(QMainWindow, Ui_MainWindow):
         self.market_page.setParent(None)
         self.cart_page.setParent(None)
         self.book_page.setParent(None)
-        match page:
-            case "market":
-                self.market_page.setParent(self.centralwidget)
-                self.market_page.show()
-            case "cart":
-                self.cart_page.setParent(self.centralwidget)
-                # self.cart_page.show()
-            case "book":
-                self.book_page.setParent(self.centralwidget)
-                self.book_page.setId(book_id)
-                self.book_page.show()
+        if page == "market":
+            self.market_page.setParent(self.centralwidget)
+            self.market_page.show()
+        elif page == "cart":
+            self.cart_page.setParent(self.centralwidget)
+            # self.cart_page.show()
+        elif page == "book":
+            self.book_page.setParent(self.centralwidget)
+            self.book_page.setId(book_id)
+            self.book_page.show()
