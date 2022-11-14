@@ -1,7 +1,10 @@
 from random import randint
 from sqlite3 import connect
 from uuid import uuid4
-from constants.data import Data
+
+from additional.constants.data import Data
+
+
 def clean_base(cursor):
     for name in ["AuthorBooks", "Authors", "Books", "Categories", "Genres", "Reviews", "Users"]:
         cursor.execute(f"delete from {name}")

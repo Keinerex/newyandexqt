@@ -9,12 +9,16 @@
 
 
 from PyQt5 import QtCore, QtWidgets
+
 from src.components.Header.Header import Header
-from src.pages.MarketPage.MarketPage import MarketPage
+
+
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1280, 830)
+        MainWindow.setMaximumSize(1280, 830)
+        MainWindow.setMinimumSize(1280, 830)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.header_widget = Header(self.centralwidget)

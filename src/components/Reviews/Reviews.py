@@ -6,14 +6,18 @@ from PyQt5.QtWidgets import QScrollArea
 from src.components.Review.Review import Review
 
 
+# Прокручиваемая область для отзывов
 class Reviews(QScrollArea):
+    # Инициализация
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.setupUi()
+        # Инициализация стилей
+        self.setup_ui()
         self.setWidget(self.scrollAreaWidgetContents_2)
         self.rerender("")
 
-    def setupUi(self):
+    # Стили
+    def setup_ui(self) -> None:
         self.setStyleSheet("border: 0px;")
         self.setMinimumSize(QtCore.QSize(870, 440))
         self.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
@@ -29,16 +33,18 @@ class Reviews(QScrollArea):
         self.verticalLayout_2.setSpacing(20)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
 
-    def rerender(self, book_id):
+    # Ререндер
+    def rerender(self, book_id) -> None:
+        # Очистить отзывы
         for i in reversed(range(self.verticalLayout_2.count())):
             self.verticalLayout_2.itemAt(i).widget().setParent(None)
-
+        # Заполнить из бд
         con = sqlite3.connect("base.db")
         cur = con.cursor()
 
-        for id, rate, user_id, text in cur.execute(
-            f'select id, rate, user_id, text from Reviews where book_id = "{book_id}"').fetchall():
-            user, = cur.execute(f'select name from Users where id = "{user_id}"').fetchone()
+        for id_, rate, user_id, text in cur.execute(
+                'select id, rate, user_id, text from Reviews where book_id = ?', (book_id,)).fetchall():
+            user, = cur.execute('select name from Users where id = ?', (user_id,)).fetchone()
             try:
                 self.verticalLayout_2.addWidget(Review(user, text, rate))
             except Exception as e:

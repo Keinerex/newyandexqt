@@ -1,10 +1,12 @@
-
 from PyQt5.QtWidgets import QWidget
 
 from src.components.Star.star_style import Ui_Form
 
 
+# Кружок рейтинга
 class Star(QWidget, Ui_Form):
-    def __init__(self, parent, type=""):
+    # Инициализация
+    def __init__(self, parent, star_type=""):
         super().__init__(parent)
-        self.setupUi(self, type=type)
+        # Инициализация стилей
+        self.setupUi(self, type=star_type)

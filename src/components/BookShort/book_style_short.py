@@ -101,7 +101,7 @@ class Ui_Form(object):
         for i in reversed(range(self.stars.count())):
             self.stars.takeAt(i).widget().setParent(None)
         for i in range(rate):
-            self.stars.addWidget(Star(Form, type="fill"))
+            self.stars.addWidget(Star(Form, star_type="fill"))
         for i in range(5 - rate):
             self.stars.addWidget(Star(Form))
 

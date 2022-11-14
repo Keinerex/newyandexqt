@@ -82,7 +82,7 @@ class Ui_Form(object):
         self.stars.setContentsMargins(0, 0, 0, 0)
         self.stars.setObjectName("starts")
         for i in range(rate):
-            self.stars.addWidget(Star(Form, type="fill"))
+            self.stars.addWidget(Star(Form, star_type="fill"))
         for i in range(5 - rate):
             self.stars.addWidget(Star(Form))
         self.price = QtWidgets.QLabel(Form)

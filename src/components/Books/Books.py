@@ -6,18 +6,23 @@ from PyQt5.QtWidgets import QScrollArea
 from src.components.Book.Book import Book
 
 
+# Прокручивыемый контейнер для книг
 class Books(QScrollArea):
+    # Инициализация
     def __init__(self, category_id, book_func, parent=None):
         super().__init__(parent)
+        # Инициализация стилей
         self.setupUi()
         self.setWidget(self.scrollAreaWidgetContents_2)
         self.rerender(category_id, book_func)
 
-    def rerender_books(self):
+    # Вызов ререндера у всех книг
+    def rerender_books(self) -> None:
         for i in range(self.verticalLayout_2.count()):
             self.verticalLayout_2.itemAt(i).widget().rerender()
 
-    def setupUi(self):
+    # Стили
+    def setupUi(self) -> None:
         self.setStyleSheet("border: 0px")
         self.setGeometry(QtCore.QRect(370, 50, 870, 660))
         self.setMinimumSize(QtCore.QSize(870, 660))
@@ -34,18 +39,20 @@ class Books(QScrollArea):
         self.verticalLayout_2.setSpacing(20)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
 
-    def rerender(self, category_id, func):
+    # Ререндер
+    def rerender(self, category_id, func) -> None:
+        # Отчистка книг
         for i in reversed(range(self.verticalLayout_2.count())):
             self.verticalLayout_2.itemAt(i).widget().setParent(None)
-
+        # Заполнение из бд
         con = sqlite3.connect("base.db")
         cur = con.cursor()
         result = cur.execute(
-            f'select id, title, price, genre_id, rate from Books where categories_id = "{category_id}"').fetchall()
+            'select id, title, price, genre_id, rate from Books where categories_id = ?', (category_id,)).fetchall()
 
         for id, title, price, genre_id, rate in result:
-            genre = cur.execute(f'select genre from Genres where id="{genre_id}"').fetchone()[0]
-            authors = [i[0] for i in cur.execute(f"""select name from Authors where id in 
-                (select author_id from AuthorBooks where book_id = "{id}")""").fetchall()]
+            genre = cur.execute("select genre from Genres where id = ?", (genre_id,)).fetchone()[0]
+            authors = [i[0] for i in cur.execute("""select name from Authors where id in 
+                (select author_id from AuthorBooks where book_id = ?)""", (id,)).fetchall()]
             self.verticalLayout_2.addWidget(Book(id, title, authors, price, genre, rate, func))
         con.close()
