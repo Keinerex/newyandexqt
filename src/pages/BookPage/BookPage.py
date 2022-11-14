@@ -16,7 +16,7 @@ class BookPage(QWidget, Ui_Form):
         self.setupUi(self)
 
     # Сетер для id
-    def set_id(self, book_id) -> None:
+    def set_id(self, book_id: str) -> None:
         self.book_id = book_id
         self.rerender()
 

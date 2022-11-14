@@ -34,7 +34,7 @@ class Reviews(QScrollArea):
         self.verticalLayout_2.setObjectName("verticalLayout_2")
 
     # Ререндер
-    def rerender(self, book_id) -> None:
+    def rerender(self, book_id: str) -> None:
         # Очистить отзывы
         for i in reversed(range(self.verticalLayout_2.count())):
             self.verticalLayout_2.itemAt(i).widget().setParent(None)

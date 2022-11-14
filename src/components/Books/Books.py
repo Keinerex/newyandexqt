@@ -40,7 +40,7 @@ class Books(QScrollArea):
         self.verticalLayout_2.setObjectName("verticalLayout_2")
 
     # Ререндер
-    def rerender(self, category_id, func) -> None:
+    def rerender(self, category_id: str, func) -> None:
         # Отчистка книг
         for i in reversed(range(self.verticalLayout_2.count())):
             self.verticalLayout_2.itemAt(i).widget().setParent(None)

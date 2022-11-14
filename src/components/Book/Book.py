@@ -9,7 +9,8 @@ from src.components.Book.book_style import Ui_Form
 # Книга
 class Book(QFrame, Ui_Form):
     # Инициализация
-    def __init__(self, book_id, title, authors, price, genre, rate, func, target="market", parent=None):
+    def __init__(self, book_id: str, title: str, authors: list, price: int, genre: str, rate: int, func,
+                 target="market", parent=None):
         super().__init__(parent)
         # Сохраненение данных книги
         self.id = book_id
