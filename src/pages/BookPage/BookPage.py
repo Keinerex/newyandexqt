@@ -34,8 +34,8 @@ class BookPage(QWidget, Ui_Form):
                         (select author_id from AuthorBooks where book_id = ?)""", (book_id,)).fetchall()]
             con = sqlite3.connect("base.db")
             cur = con.cursor()
-            if query := cur.execute(f'select count from Cart where book_id = ?', (self.book_id,)).fetchone():
-                self.count = query[0]
+            if result := cur.execute(f'select count from Cart where book_id = ?', (self.book_id,)).fetchone():
+                self.count = result[0]
             else:
                 self.count = 0
             con.close()
